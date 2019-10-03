@@ -16,20 +16,10 @@
         {% endblock %}
     </head>
     <body>
-        <a id="github-ribbon" href="http://github.com/anru/rsted">Fork me on GitHub</a>
         {% block body_head %}
         {% endblock %}
         <header id="header">
-            <h1>{% block site_title %}Online reStructuredText editor{% endblock %}</h1>
-            <menu id="navigation">
-                {%- block main_nav %}
-                <ul class="menu" id="menu">
-                    <li class="{{ is_active('index') }}"><a href="{{ url_for('index') }}">Editor</a>
-                    </li>
-                    <li class="{{ is_active('about') }}"><a href="{{ url_for('about') }}">About</a></li>
-                </ul>
-                {% endblock -%}
-            </menu>
+            <h1>{% block site_title %}Anet's Online reStructuredText editor{% endblock %}</h1>
         </header>
         <script type="text/javascript">
             var script_root = {{ request.script_root|tojson|safe }};
@@ -45,7 +35,7 @@
 
         <footer id="footer">
             <span class="left"><a target="_blank" href="http://docutils.sourceforge.net/docs/user/rst/quickref.html">Quick reStructuredText reference</a></span>
-            <span class="right">Copyright © rst.ninjs.org, 2011</span>
+            <span class="right">Copyright © Anet.be, 2019</span>
         </footer>
 
     </body>

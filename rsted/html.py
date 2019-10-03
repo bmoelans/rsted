@@ -1,8 +1,8 @@
+from docutils.core import publish_string
 from os.path import join as path_join
 
-from docutils.core import publish_string
+from rsted.anethtml import AnetHtmlWriter
 
-# see http://docutils.sourceforge.net/docs/user/config.html
 default_rst_opts = {
     'no_generator': True,
     'no_source_link': True,
@@ -26,6 +26,6 @@ def rst2html(rst, theme=None, opts=None):
         stylesheets.append('%s/%s.css' % (theme, theme))
     rst_opts['stylesheet'] = ','.join([path_join('var/themes/', p) for p in stylesheets])
 
-    out = publish_string(rst, writer_name='html', settings_overrides=rst_opts)
+    out = publish_string(rst, writer=AnetHtmlWriter, writer_name='html', settings_overrides=rst_opts)
 
     return out

@@ -7,12 +7,12 @@ html, body, #container {
 }
 
 #header {
-    background-color: #213A49;
+    background-color: #024a74;
     text-align: center;
 }
 
 #header, #footer {
-    color: #E1EAEF;
+    color: #FFFFFF;
 }
 
 
@@ -110,18 +110,4 @@ li.ext_link {
 
 .ui-widget {
     font-size: 0.9em !important;
-}
-
-#github-ribbon {
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  height: 2.5rem;
-  line-height: 2.5rem;
-  padding: 0 1rem;
-  color: #213A49;
-  background: #E1EAEF;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 2px;
 }
