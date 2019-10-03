@@ -1,10 +1,13 @@
+# ignore IDE directories
+.DS_Store
+.idea/
+
+# ignore build files
 *.pyc
-/src/settings_base.py
+*.pyo
+*.mypy_cache/
+*.pytest_cache/
+*__pycache__
+
+# ignore local settings
 /settings_local.py
-.project
-.pydevproject
-.settings
-.tmp*
-/var/run
-/run.sh
-/env
