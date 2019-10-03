@@ -1,6 +1,6 @@
-FROM python:2-alpine
+FROM python:3-alpine
 
-RUN apk --no-cache add build-base python-dev py-pip jpeg-dev zlib-dev
+RUN apk --no-cache add build-base python-dev py-pip jpeg-dev zlib-dev git
 
 WORKDIR /usr/src/app
 

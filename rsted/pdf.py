@@ -1,19 +1,14 @@
 from rst2pdf.createpdf import RstToPdf
 from flask import current_app
 from codecs import lookup
-
+from io import BytesIO
 
 utf8codec = lookup('utf-8')
-
-try:
-    from cStringIO import StringIO
-except ImportError:
-    from StringIO import StringIO
 
 
 def rst2pdf(content, theme=None):
     topdf = RstToPdf(basedir=current_app.config.root_path, breaklevel=0)
-    buf = StringIO()
+    buf = BytesIO()
 
     if not content:
         content = '\0'

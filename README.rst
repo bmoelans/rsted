@@ -33,8 +33,12 @@ Docker
 In a docker installed host, just build and run::
 
     docker build -t rsted .
-    docker run --name rsted --rm -p 5000:5000 rsted
+    docker run --name rsted --rm -v `pwd`:/usr/src/app -p 5000:5000 rsted
 
 A server starts on port 5000. Please adjust it, if you need another port
 by changing run command above. And then just visit http://localhost:5000/ in
 your browser.
+
+To step into container::
+
+    docker run --rm -it rsted:latest ash
