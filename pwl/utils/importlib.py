@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
-
-#Taken from Python 2.7 with permission from/by the original author.
+# Taken from Python 2.7 with permission from/by the original author.
 import sys
 import os
 
@@ -11,7 +9,7 @@ def _resolve_name(name, package, level):
     if not hasattr(package, 'rindex'):
         raise ValueError("'package' not set to a string")
     dot = len(package)
-    for x in xrange(level, 1, -1):
+    for x in range(level, 1, -1):
         try:
             dot = package.rindex('.', 0, dot)
         except ValueError:
@@ -40,6 +38,7 @@ def import_module(name, package=None):
     __import__(name)
     return sys.modules[name]
 
+
 def import_package_modules(package):
     pkg = import_module(package)
     path = pkg.__path__[0]
@@ -66,4 +65,3 @@ def import_attribute(name):
     mod = __import__(module, globals(), locals(), [attr])
 
     return getattr(mod, attr)
-

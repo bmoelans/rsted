@@ -19,5 +19,7 @@ def render_html(template):
                 variables = result
 
             return render_template(template, **variables)
+
         return wrapped
+
     return decorator

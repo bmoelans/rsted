@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from __future__ import with_statement
 import os
 import sys
@@ -13,7 +12,7 @@ class BaseDaemon(object):
     """
     A generic daemon class.
     Usage: subclass the Daemon class and override the run() method
-           for run\start daemon execute start() ( not run method )
+           for run/start daemon execute start() ( not run method )
 
     Availability: Unix
     opts: our_home_dir, out_log, err_log, umask
@@ -39,10 +38,9 @@ class BaseDaemon(object):
             pid = str(os.getpid())
             open(self.pidfile, 'w').write('%s\n' % pid)
 
-
     def handle_sigterm(self, *args):
         self.atkilled(signal.SIGTERM)
-        #self.delpid() - handle by atexit
+        # self.delpid() - handle by atexit
 
     def atkilled(self, signo):
         pass
@@ -51,9 +49,9 @@ class BaseDaemon(object):
         if os.path.exists(self.pidfile):
             try:
                 os.unlink(self.pidfile)
-            except:
+            except OSError:
                 pass
-    
+
     def readpid(self):
         try:
             with open(self.pidfile, 'r') as pf:
@@ -84,18 +82,18 @@ class BaseDaemon(object):
 
         # Get the pid from the pidfile
         pid = self.readpid()
-        
+
         if not pid:
             message = 'pidfile %s does not exist. Daemon not running?\n' % self.pidfile
             sys.stderr.write(message)
-            return   # not an error in a restart
+            return  # not an error in a restart
 
         # Try killing the daemon process
         try:
             while 1:
                 os.kill(pid, signal.SIGTERM)  # @UndefinedVariable
                 time.sleep(0.1)
-        except OSError, err:
+        except OSError as err:
             error_code = getattr(err, 'code', err.errno)
             if error_code == errno.ESRCH:  # No such process
                 self.delpid()
@@ -118,4 +116,3 @@ class BaseDaemon(object):
         """
 
         raise NotImplementedError
-

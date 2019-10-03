@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """
 FastCGI (or SCGI, or AJP1.3 ...) server that implements the WSGI protocol.
 
@@ -86,9 +84,9 @@ FASTCGI_OPTIONS = {
 
 
 def fastcgi_help(message=None):
-    print FASTCGI_HELP
+    print(FASTCGI_HELP)
     if message:
-        print message
+        print(message)
     return False
 
 
@@ -114,11 +112,10 @@ def runfastcgi(app, argset=[], **kwargs):
         if pw:
             os.setresgid(pw.pw_gid, pw.pw_gid, pw.pw_gid)
             os.setresuid(pw.pw_uid, pw.pw_uid, pw.pw_uid)
-        
 
     try:
-        import flup
-    except ImportError, e:
+        import flup  # noqa: F401
+    except ImportError as e:
         print >> sys.stderr, 'ERROR: %s' % e
         print >> sys.stderr, '  Unable to load the flup package.  In order to run rsted'
         print >> sys.stderr, '  as a FastCGI application, you will need to get flup from'
@@ -142,7 +139,7 @@ def runfastcgi(app, argset=[], **kwargs):
 
     try:
         module = importlib.import_module('.%s' % flup_module, 'flup')
-        #WSGIServer = module.WSGIServer
+
         class WSGIServer(module.WSGIServer):
 
             def _spawnChild(self, sock):
@@ -153,8 +150,8 @@ def runfastcgi(app, argset=[], **kwargs):
 
                 return super(WSGIServer, self)._spawnChild(sock)
 
-    except:
-        print "Can't import flup." + flup_module
+    except ImportError:
+        print("Can't import flup." + flup_module)
         return False
 
     if options['host'] and options['port'] and not options['socket']:
@@ -200,4 +197,3 @@ def runfastcgi(app, argset=[], **kwargs):
 
 if __name__ == '__main__':
     runfastcgi(sys.argv[1:])
-

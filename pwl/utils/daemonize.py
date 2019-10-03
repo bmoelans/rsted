@@ -1,10 +1,10 @@
-
 import os
 import sys
 import signal
 
-def become_daemon(our_home_dir='.', out_log='/dev/null', err_log='/dev/null', umask=022):
-    '''Robustly turn into a UNIX daemon, running in our_home_dir.'''
+
+def become_daemon(our_home_dir='.', out_log='/dev/null', err_log='/dev/null', umask=0o022):
+    """Robustly turn into a UNIX daemon, running in our_home_dir."""
 
     #  On some systems, the fork() system call resets some of the
     #  signal handler, so save them here.
@@ -15,7 +15,7 @@ def become_daemon(our_home_dir='.', out_log='/dev/null', err_log='/dev/null', um
     try:
         if os.fork() > 0:
             sys.exit(0)  # kill off parent
-    except OSError, e:
+    except OSError as e:
         sys.stderr.write('fork #1 failed: (%d) %s\n' % (e.errno, e.strerror))
         sys.exit(1)
     os.setsid()
@@ -26,7 +26,7 @@ def become_daemon(our_home_dir='.', out_log='/dev/null', err_log='/dev/null', um
     try:
         if os.fork() > 0:
             os._exit(0)
-    except OSError, e:
+    except OSError as e:
         sys.stderr.write('fork #2 failed: (%d) %s\n' % (e.errno, e.strerror))
         os._exit(1)
 
