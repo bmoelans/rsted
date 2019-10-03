@@ -1,7 +1,7 @@
 import os
 import sys
 
-from flask import Flask, request, render_template, make_response, url_for
+from flask import Flask, request, make_response, url_for
 from rsted.html import rst2html as _rst2html
 from rsted.pdf import rst2pdf as _rst2pdf
 from flaskext.helpers import render_html

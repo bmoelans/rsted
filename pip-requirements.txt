@@ -1,4 +1,3 @@
-flup
 flask
 # rst2pdf
 git+https://github.com/rst2pdf/rst2pdf.git  # todo: once python3 version released use version above
